@@ -18,4 +18,18 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express', messages });
 });
 
+/* GET new message page. */
+router.get('/new', function (req, res, next) {
+  res.render('form');
+});
+
+/* GET new message page. */
+router.post('/new', function (req, res, next) {
+  const { text, user } = req.body;
+
+  messages.push({ text, user, added: new Date() });
+
+  res.redirect('/');
+});
+
 module.exports = router;
